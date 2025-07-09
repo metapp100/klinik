@@ -1,0 +1,275 @@
+/* Umum */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #eaf4fc;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Mengatur tinggi halaman minimal 100vh */
+}
+
+/* Header */
+header {
+    background-color: #4a90e2;
+    padding: 15px 0;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+
+#profile-container {
+    display: none; /* Sembunyikan profil dan logout sebelum login */
+    margin-left: 20px;
+}
+
+/* Setelah login */
+#profile-container {
+    display: inline-block; /* Tampilkan profil dan logout di samping */
+    margin-left: 20px;
+}
+
+#login-link-container {
+    display: block; /* Tampilkan login dan registrasi di beranda */
+}
+
+/* Setelah login */
+.logged-in #login-link-container {
+    display: none; /* Sembunyikan login dan registrasi setelah login */
+}
+
+.logged-in #profile-container {
+    display: block; /* Tampilkan profil dan logout setelah login */
+}
+
+/* Kontainer Umum */
+section {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    max-width: 800px;
+    flex-grow: 1; /* Agar bagian ini mengambil sisa ruang di halaman */
+}
+
+/* Heading */
+h1 {
+    color: #4a90e2;
+    text-align: center;
+}
+
+h2 {
+    color: #4a90e2;
+    margin-bottom: 15px;
+}
+
+/* Label dan Input */
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="date"],
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+input:focus {
+    border-color: #4a90e2;
+    outline: none;
+}
+
+/* Tombol */
+button {
+    background-color: #4a90e2;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    transition: background-color 0.3s;
+    margin-top: 15px;
+}
+
+button:hover {
+    background-color: #357ab8;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 15px 0;
+    background-color: #4a90e2;
+    color: white;
+    width: 100%;
+    position: relative;
+    bottom: 0;
+}
+
+/* Menata Gambar Tambahan di Beranda */
+.additional-image-container {
+    text-align: center;
+    margin-top: 20px; /* Memberikan jarak atas pada gambar */
+}
+
+.additional-image {
+    width: 100%; /* Gambar mengisi lebar penuh, bisa sesuaikan */
+    max-width: 400px; /* Batasi lebar gambar agar tidak terlalu besar */
+    height: auto; /* Menjaga proporsi gambar */
+    margin-top: 20px; /* Memberikan jarak antara gambar dan teks */
+}
+
+/* Menata Bagian Beranda */
+#home {
+    text-align: center;
+    padding: 40px;
+    flex-grow: 1;
+}
+
+#logo {
+    width: 100px; /* Sesuaikan ukuran logo */
+    height: auto;
+    margin-bottom: 20px; /* Memberikan jarak antara logo dan teks */
+}
+
+h1 {
+    color: #68C8D3; /* Sesuaikan warna dengan tema */
+    margin-bottom: 15px;
+}
+
+p {
+    margin-bottom: 20px; /* Memberikan jarak bawah antara paragraf dan gambar */
+}
+
+/* Menata Tombol Mulai */
+#mulai-btn {
+    background-color: #68C8D3; /* Warna sesuai tema */
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    margin-top: 15px;
+}
+
+/* Styling untuk Nomor Antrian */
+#queue-info {
+    background-color: #ffffff; /* Latar belakang putih */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    text-align: center;
+}
+
+#queue-info p {
+    font-size: 18px;
+    color: #333;
+    margin: 10px 0;
+}
+
+/* Styling untuk Nomor Antrian */
+#no-antrean, #current-queue, #next-queue {
+    font-size: 24px;
+    color: #4a90e2;
+    font-weight: bold;
+}
+
+/* Tombol Ambil Nomor Antrian */
+#takeQueueBtn {
+    background-color: #4a90e2; /* Warna tombol sesuai tema */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+}
+
+#takeQueueBtn:hover {
+    background-color: #357ab8;
+}
+
+#takeQueueBtn:active {
+    background-color: #285a8e;
+}
+
+/* Styling untuk Bagian Beranda setelah Login */
+#home #queue-info {
+    display: block; /* Tampilkan info antrian setelah login */
+}
+
+#login p a {
+    color: #4a90e2; /* Warna link sesuai tema */
+    text-decoration: none;
+}
+
+#login p a:hover {
+    text-decoration: underline;
+}
+
+#mulai-btn:hover {
+    background-color: #57b7c0; /* Warna hover untuk tombol */
+}
+
+/* Menata Footer supaya berada di bawah */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Media Queries untuk Responsivitas */
+@media (max-width: 768px) {
+    section {
+        padding: 15px;
+    }
+
+    h1, h2 {
+        font-size: 1.2em;
+    }
+
+    nav ul li {
+        display: block;
+        margin: 10px 0;
+    }
+}

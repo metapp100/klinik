@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manajemen Klinik</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+    <nav>
+        <ul>
+            <li><a href="javascript:void(0)" onclick="showPage('home')" id="home-link">Beranda</a></li>
+            <li><a href="javascript:void(0)" onclick="showPage('about')" id="about-link">Tentang Kami</a></li>
+            <li><a href="javascript:void(0)" onclick="showPage('services')" id="services-link">Layanan</a></li>
+            <li><a href="javascript:void(0)" onclick="showPage('contact')" id="contact-link">Kontak</a></li>
+            <li id="profile-container" style="display: none;">
+                <a href="javascript:void(0)" id="profile-link" onclick="showProfile()">Profil</a> |
+                <a href="javascript:void(0)" id="logout-link" onclick="logout()">Logout</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<!-- Halaman Beranda -->
+<section id="home">
+    <div class="logo-container">
+        <img src="images/logo.png" alt="Tamba Clinic Logo" id="logo"> <!-- Logo -->
+    </div>
+    <h1>Selamat Datang di Sistem Manajemen Klinik</h1>
+    <p>Website ini membantu Anda mengelola pendaftaran pasien, jadwal dokter, antrian, dan konsultasi secara digital. Nikmati pengalaman layanan kesehatan yang lebih cepat dan terorganisir.</p>
+
+    <!-- Bagian untuk Nomor Antrian -->
+    <div id="queue-info" style="display: none;">
+        <p>Nomor Antrian Anda: <span id="no-antrean">-</span></p>
+        <p>Nomor Antrian Sekarang: <span id="current-queue">1</span></p>
+        <p>Nomor Antrian Selanjutnya: <span id="next-queue">2</span></p>
+        <button id="takeQueueBtn">Ambil Nomor Antrian</button>
+    </div>
+
+    <button id="login-btn" onclick="showPage('login')">Login</button>
+    <button id="registrasi-btn" onclick="showPage('registrasi')">Registrasi</button>
+</section>
+
+<!-- Halaman Tentang Kami -->
+<section id="about" style="display: none;">
+    <h2>Tentang Kami</h2>
+    <p>Klinik Tamba adalah klinik kesehatan yang memberikan pelayanan terbaik kepada pasien kami.</p>
+    <p>Alamat: Jalan Sehati No. 123, Denpasar, Bali</p>
+    <p>Jam Buka: Senin - Jumat, 08:00 - 17:00 WIB</p>
+</section>
+
+<!-- Halaman Kontak -->
+<section id="contact" style="display: none;">
+    <h2>Kontak Kami</h2>
+    <p>Email: kontak@klinik-tamba.com</p>
+    <p>Fax: +62 123 456 789</p>
+    <p>Hubungi Kami: +62 987 654 321</p>
+</section>
+
+<!-- Halaman Layanan -->
+<!-- Halaman Layanan -->
+<section id="services" style="display: none;">
+    <h2>Layanan</h2>
+    <p>Silakan pilih layanan yang tersedia:</p>
+
+    <!-- Telekonsultasi -->
+    <button id="consultation">Telekonsultasi</button>
+    <!-- Jadwal Dokter -->
+    <button id="jadwal-dokter">Jadwal Dokter</button>
+
+    <!-- Telekonsultasi -->
+    <div id="teleconsultation" style="display: none;">
+        <h3>Telekonsultasi</h3>
+        <p>Telekonsultasi memungkinkan Anda untuk berbicara langsung dengan dokter melalui chat atau video call dari rumah.</p>
+    </div>
+
+    <!-- Jadwal Dokter -->
+    <div id="jadwal" style="display: none;">
+        <h3>Jadwal Dokter</h3>
+        <p>Lihat jadwal dokter yang tersedia di klinik kami.</p>
+    </div>
+
+    <!-- Ambil Nomor Antrian -->
+    <div id="queue">
+        <h3>Ambil Nomor Antrian</h3>
+        <p>Ambil nomor antrian untuk mendaftar ke dokter sesuai jadwal yang tersedia. Nomor antrian akan memberikan perkiraan waktu untuk konsultasi langsung.</p>
+        <p><strong>Catatan:</strong> Anda harus login untuk mengakses nomor antrian.</p>
+    </div>
+</section>
+
+<!-- Halaman Profile -->
+<section id="profile" style="display: none;">
+    <h2>Profil Pengguna</h2>
+    <p id="userInfo"></p>
+    <form id="editProfileForm" style="display: none;" onsubmit="editProfile(event)">
+        <label for="editName">Nama Lengkap</label>
+        <input type="text" id="editName" name="editName" required>
+
+        <label for="editAddress">Alamat</label>
+        <input type="text" id="editAddress" name="editAddress" required>
+
+        <label for="editDob">Tanggal Lahir</label>
+        <input type="date" id="editDob" name="editDob" required>
+
+        <button type="submit">Simpan Perubahan</button>
+    </form>
+    <button id="editProfileBtn" onclick="editProfileForm()">Edit Profil</button>
+    <button id="logoutBtn" onclick="logout()">Logout</button>
+</section>
+
+<!-- Halaman Login -->
+<section id="login" class="form-container" style="display: none;">
+    <h2>Login</h2>
+    <form id="loginForm" onsubmit="login(event)">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" required>
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required>
+
+        <button type="submit">Login</button>
+    </form>
+    <p>Belum punya akun? <a href="javascript:void(0);" id="to-registrasi" onclick="showPage('registrasi')">Registrasi dulu</a></p>
+</section>
+
+<!-- Halaman Registrasi -->
+<section id="registrasi" class="form-container" style="display: none;">
+    <h2>Registrasi Pasien</h2>
+    <form onsubmit="register(event)">
+        <label for="nik">NIK</label>
+        <input type="text" id="nik" name="nik" required>
+
+        <label for="name">Nama Lengkap</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="dob">Tanggal Lahir</label>
+        <input type="date" id="dob" name="dob" required>
+
+        <label for="gender">Jenis Kelamin</label>
+        <select id="gender" required>
+            <option value="">Pilih Jenis Kelamin</option>
+            <option value="Laki-laki">Laki-laki</option>
+            <option value="Perempuan">Perempuan</option>
+        </select>
+
+        <label for="usernameReg">Username</label>
+        <input type="text" id="usernameReg" name="usernameReg" required>
+
+        <label for="passwordReg">Password</label>
+        <input type="password" id="passwordReg" name="passwordReg" required>
+
+        <button type="submit">Daftar</button>
+    </form>
+    <p>Sudah punya akun? <a href="javascript:void(0);" id="to-login" onclick="showPage('login')">Login</a></p>
+</section>
+
+<footer>
+    <p>&copy; 2025 Aplikasi Manajemen Klinik - Universitas Udayana</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
